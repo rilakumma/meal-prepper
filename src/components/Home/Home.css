@@ -1,0 +1,19 @@
+.home {
+  background: rgb(247, 247, 247);
+}
+.banner {
+  height: 60%;
+  width: 100%;
+  background-image: url("./prepping.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  /* box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3); */
+}
+.display {
+  display: grid;
+  grid-template-columns: repeat(3, 27%);
+  justify-content: center;
+  align-content: center;
+}
