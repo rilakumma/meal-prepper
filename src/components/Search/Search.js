@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Home.css";
+import "./Search.css";
 import axios from "axios";
 import Card from "../Card/Card";
 
@@ -7,14 +7,14 @@ export default class Search extends Component {
   constructor() {
     super();
     this.state = {
-      recipes: null
+      recipes: null,
+      search: ""
     };
   }
-  componentDidMount() {
-    let search = "vegetarian";
+  getRecipes() {
     axios
       .get(
-        `https://api.edamam.com/search?q=${search}&app_id=b0d4ed40&app_key=
+        `https://api.edamam.com/search?q=${this.state.search}&to=50&app_id=b0d4ed40&app_key=
 4c0680d563ce7f47682cea681756fbad`,
         { headers: { "Access-Control-Allow-Origin": "*" } }
       )
@@ -28,9 +28,6 @@ export default class Search extends Component {
           }
         );
       });
-    // axios.get(`https://www.food2fork.com/api/get?key=${process.env.REACT_APP_API_KEY}`).then(res => {
-    //   console.log(res.data);
-    // });
   }
   render() {
     const { recipes } = this.state;
@@ -42,6 +39,10 @@ export default class Search extends Component {
       });
     return (
       <div className="search">
+        <div className="bar">
+          <input onChange={e => this.setState({ search: e.target.value })} className="search-bar" />
+          <button onClick={() => this.getRecipes()}>Search</button>
+        </div>
         <div className="display">{showRecipes}</div>
       </div>
     );
